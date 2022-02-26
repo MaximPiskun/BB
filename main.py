@@ -15,20 +15,7 @@ button_3 = types.KeyboardButton('сложный')
 ans_kb = types.ReplyKeyboardMarkup()
 ans_kb.add(button_1).add(button_2).add(button_3)
 
-class Singleton:
-   __instance = None
 
-   def __init__(self, prop):
-     self.some_property = prop
-
-   @classmethod
-   def get_instance(cls):
-       if not cls.__instance:
-           cls.__instance = Singleton()
-       return cls.__instance
-
-obj_1 = Singleton.get_instance()
-obj_2 = Singleton.get_instance()
 
 
 bot = telebot.TeleBot(API_TOKEN)
@@ -53,16 +40,23 @@ def generation_level1():
             beg = beg * k
             mass.append(beg)
     return mass
+
+
 def generation_level2():
+    print("---")
+def generation_level3():
+    print("---")
+class Singleton:
+   __instance = None
 
-class BaseClass:
-	def __init__(self, data):
-		self.data = data
+   def __init__(self, prop):
+     self.some_property = prop
 
-
-	def make_smth(self):
-		pass
-
+   @classmethod
+   def get_instance(cls):
+       if not cls.__instance:
+           cls.__instance = Singleton()
+       return cls.__instance
 
 
 @bot.message_handler(commands=['start'])
@@ -101,6 +95,10 @@ def start(message):
             bot.send_sticker(message.chat.id, WIN_STICKER)
     except ValueError:
         bot.send_message(message.from_user.id, "Понимаю только целые числа")
+
+
+
+
 
 
 
