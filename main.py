@@ -76,14 +76,10 @@ def generation_level2():
 
 
 def generation_level3():
-    k = random.randint(100, 600)
+    k = str(random.randint(100, 600))
+    from oeis import 'A000'+k
+    return *A000+k[:10]
 
-    from oeis import A000045
-    return *A000045[:10]
-
-
-def generation_level2():
-    print("---")
 
 class Singleton:
    __instance = None
@@ -134,11 +130,6 @@ def start(message):
             bot.send_sticker(message.chat.id, WIN_STICKER)
     except ValueError:
         bot.send_message(message.from_user.id, "Понимаю только целые числа")
-
-
-
-
-
 
 
 
