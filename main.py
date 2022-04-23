@@ -16,9 +16,19 @@ ans_kb = types.ReplyKeyboardMarkup()
 ans_kb.add(button_1).add(button_2).add(button_3)
 
 
-
-
 bot = telebot.TeleBot(API_TOKEN)
+def inss(a,ss):
+    n = ''
+    k = ''
+    while a > 0:
+        n = n + str(a % b)
+        a = a // b
+    n =  list(reversed(n))
+    for j in range(len(n)):
+        k += n[j]
+    return k
+
+
 def generation_level1():
     k = random.randint(1,10)
     oper = random.randint(1,3)
@@ -41,11 +51,40 @@ def generation_level1():
             mass.append(beg)
     return mass
 
+def generation_level2():
+    k = random.randint(1,10)
+    oper = random.randint(1,3)
+    beg = random.randint(-10,10)
+    ss = random.randint(2, 9)
+    mass = []
+    if oper == 1:
+        mass.append(inss(beg,ss))
+        for i in range (5):
+            beg = beg + k
+            mass.append(inss(beg,ss))
+    if oper == 2:
+        mass.append(inss(beg,ss))
+        for i in range(5):
+            beg = beg - k
+            mass.append(inss(beg,ss))
+    if oper == 3:
+        mass.append(inss(beg,ss))
+        for i in range(5):
+            beg = beg * k
+            mass.append(inss(beg,ss))
+    return mass
+
+
+def generation_level3():
+    k = random.randint(100, 600)
+
+    from oeis import A000045
+    return *A000045[:10]
+
 
 def generation_level2():
     print("---")
-def generation_level3():
-    print("---")
+
 class Singleton:
    __instance = None
 
@@ -60,7 +99,7 @@ class Singleton:
 
 
 @bot.message_handler(commands=['start'])
-def start_message(message):
+def start_message(message):x
     bot.send_sticker(message.chat.id, START_STICKER)
     bot.send_message(message.from_user.id, "Привет, твоя задача продолжить последовательность чисел. Выбери сложность: ", reply_markup=kb.ans_kb)
     user_choice = message.from_user.id
