@@ -142,9 +142,6 @@ def start(message):
 
 
 
-
-
-
 @bot.message_handler(content_types=['voice'])
 def start_message(message):
     bot.send_message(message.from_user.id, "Не слышуууу. Ничего не слышу. Глуховат я :(")
